@@ -251,6 +251,13 @@ struct mmc_card {
 #define MMC_TYPE_SDIO		2		/* SDIO card */
 #define MMC_TYPE_SD_COMBO	3		/* SD combo (IO+mem) card */
 	unsigned int		state;		/* (our) card state */
+#define MMC_STATE_PRESENT      (1<<0)          /* present in sysfs */
+#define MMC_STATE_READONLY     (1<<1)          /* card is read-only */
+#define MMC_STATE_BLOCKADDR    (1<<2)          /* card uses block-addressing */
+#define MMC_CARD_SDXC          (1<<3)          /* card is SDXC */
+#define MMC_CARD_REMOVED       (1<<4)          /* card has been removed */
+#define MMC_STATE_DOING_BKOPS  (1<<5)          /* card is doing BKOPS */
+#define MMC_STATE_SUSPENDED    (1<<6)          /* card is suspended */
 	unsigned int		quirks; 	/* card quirks */
 #define MMC_QUIRK_LENIENT_FN0	(1<<0)		/* allow SDIO FN0 writes outside of the VS CCCR range */
 #define MMC_QUIRK_BLKSZ_FOR_BYTE_MODE (1<<1)	/* use func->cur_blksize */
@@ -320,5 +327,24 @@ bool mmc_card_is_blockaddr(struct mmc_card *card);
 #define mmc_card_mmc(c)		((c)->type == MMC_TYPE_MMC)
 #define mmc_card_sd(c)		((c)->type == MMC_TYPE_SD)
 #define mmc_card_sdio(c)	((c)->type == MMC_TYPE_SDIO)
+
+#define mmc_card_present(c)     ((c)->state & MMC_STATE_PRESENT)
+#define mmc_card_readonly(c)    ((c)->state & MMC_STATE_READONLY)
+#define mmc_card_blockaddr(c)   ((c)->state & MMC_STATE_BLOCKADDR)
+#define mmc_card_ext_capacity(c) ((c)->state & MMC_CARD_SDXC)
+#define mmc_card_removed(c)     ((c) && ((c)->state & MMC_CARD_REMOVED))
+#define mmc_card_doing_bkops(c) ((c)->state & MMC_STATE_DOING_BKOPS)
+#define mmc_card_suspended(c)   ((c)->state & MMC_STATE_SUSPENDED)
+
+#define mmc_card_set_present(c) ((c)->state |= MMC_STATE_PRESENT)
+#define mmc_card_set_readonly(c) ((c)->state |= MMC_STATE_READONLY)
+#define mmc_card_set_blockaddr(c) ((c)->state |= MMC_STATE_BLOCKADDR)
+#define mmc_card_set_ext_capacity(c) ((c)->state |= MMC_CARD_SDXC)
+#define mmc_card_set_removed(c) ((c)->state |= MMC_CARD_REMOVED)
+#define mmc_card_set_doing_bkops(c)     ((c)->state |= MMC_STATE_DOING_BKOPS)
+#define mmc_card_clr_doing_bkops(c)     ((c)->state &= ~MMC_STATE_DOING_BKOPS)
+#define mmc_card_set_suspended(c) ((c)->state |= MMC_STATE_SUSPENDED)
+#define mmc_card_clr_suspended(c) ((c)->state &= ~MMC_STATE_SUSPENDED)
+
 
 #endif /* LINUX_MMC_CARD_H */

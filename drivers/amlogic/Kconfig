@@ -1,0 +1,30 @@
+#
+# Amlogic driver configuration
+#
+config AMLOGIC_DRIVER
+	bool "Amlogic Peripheral drivers"
+	default n
+	help
+		this option is provided for control amlogic
+		drivers, if you want to use amlogic driver
+		please open it
+
+config AMLOGIC_MODIFY
+	bool "Amlogic modify for kernel code"
+	default n
+	help
+		this option is set up for AMLOGIC modify of
+		standard kernel source code. All modify of kernel
+		standard code should be wrapped by this config
+
+if AMLOGIC_DRIVER
+menu "Amlogic Device Drivers"
+
+source "drivers/amlogic/iomap/Kconfig" 
+
+source "drivers/amlogic/mmc/Kconfig"
+
+
+
+endmenu
+endif
