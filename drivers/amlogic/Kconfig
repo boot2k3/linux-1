@@ -24,7 +24,7 @@ source "drivers/amlogic/iomap/Kconfig"
 
 source "drivers/amlogic/mmc/Kconfig"
 
-
+source "drivers/amlogic/bluetooth/Kconfig"
 
 endmenu
 endif
