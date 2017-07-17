@@ -73,20 +73,6 @@
 		status = "okay";
 		gpio_reset = <&gpio       GPIOX_17       GPIO_ACTIVE_HIGH>;
 	};
-
-	usb_vbus: regulator-usb0-vbus {                   
-		          compatible = "regulator-fixed";
-
-			        regulator-name = "USB0_VBUS";
-
-			        regulator-min-microvolt = <5000000>;
-			        regulator-max-microvolt = <5000000>;
-
-			        gpio = <&gpio GPIODV_24 GPIO_ACTIVE_HIGH>;
-			        enable-active-high;
-		  };
-
-
 };
 
 &hdmi_tx {
@@ -161,9 +147,3 @@
 &scpi_clocks {
 	status = "disabled";
 };
-
-&usb2_phy0 {
-	        status = "okay";
-			        phy-supply = <&usb_vbus>;
-};
-
