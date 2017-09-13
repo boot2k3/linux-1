@@ -25,7 +25,6 @@
 #include <dt-bindings/input/meson_rc.h>
 #include <dt-bindings/pwm/pwm.h>
 #include <dt-bindings/pwm/meson.h>
-#include "mesongxbb-gpu-mali450.dtsi"
 / {
 	cpus:cpus {
 		#address-cells = <2>;
@@ -1290,8 +1289,8 @@ i2c_ao: i2c@c8100500{ /*I2C-AO*/
 	};
 };
 
-&gpu{
-	/*gpu max freq is 750M*/
-	tbl = <&clk125_cfg &clk285_cfg &clk400_cfg
-		   &clk500_cfg &clk666_cfg &clk750_cfg &clk750_cfg>;
-};
+//&gpu{
+//	/*gpu max freq is 750M*/
+//	tbl = <&clk125_cfg &clk285_cfg &clk400_cfg
+//		   &clk500_cfg &clk666_cfg &clk750_cfg &clk750_cfg>;
+//};
