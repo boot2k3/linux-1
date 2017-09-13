@@ -272,7 +272,7 @@
 	vpu {
 		compatible = "amlogic, vpu";
 		dev_name = "vpu";
-		status = "ok";
+		status = "disabled";
 		clocks = <&clkc CLKID_VPU_MUX
 			&clkc CLKID_VAPB_MUX
 			&clkc CLKID_VPU_INTR>;
