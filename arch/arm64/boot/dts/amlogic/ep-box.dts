@@ -688,11 +688,75 @@
 		       0x0 0xc8100000 0x0 0x200>;
 	};
 
-	sysled {
-		compatible = "amlogic, sysled";
-		dev_name = "sysled";
+	led-booting {
+		compatible = "amlogic, led-booting";
+		dev_name = "led-booting";
 		status = "okay";
-		led_gpio = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
+		led_gpio = <&gpio GPIODV_26 GPIO_ACTIVE_LOW>;
+		led_active_low = <1>;
+	};
+
+	led-booton {
+		compatible = "amlogic, led-booton";
+		dev_name = "led-booton";
+		status = "okay";
+		led_gpio = <&gpio GPIODV_27 GPIO_ACTIVE_LOW>;
+		led_active_low = <1>;
+	};
+
+	led-wifi {
+		compatible = "amlogic, led-wifi";
+		dev_name = "led-wifi";
+		status = "okay";
+		led_gpio = <&gpio_ao GPIOAO_6 GPIO_ACTIVE_LOW>;
+		led_active_low = <1>;
+	};
+
+	led-wifiok {
+		compatible = "amlogic, led-wifiok";
+		dev_name = "led-wifiok";
+		status = "okay";
+		led_gpio = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_LOW>;
+		led_active_low = <1>;
+	};
+
+	led-usbok {
+		compatible = "amlogic, led-usbok";
+		dev_name = "led-usbok";
+		status = "okay";
+		led_gpio = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_LOW>;
+		led_active_low = <1>;
+	};
+
+	led-usbwait {
+		compatible = "amlogic, led-usbwait";
+		dev_name = "led-usbwait";
+		status = "okay";
+		led_gpio = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_LOW>;
+		led_active_low = <1>;
+	};
+
+	led-6inch {
+		compatible = "amlogic, led-6inch";
+		dev_name = "led-6inch";
+		status = "okay";
+		led_gpio = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_LOW>;
+		led_active_low = <1>;
+	};
+
+	led-a4doc {
+		compatible = "amlogic, led-a4doc";
+		dev_name = "led-a4doc";
+		status = "okay";
+		led_gpio = <&gpio GPIODV_24 GPIO_ACTIVE_LOW>;
+		led_active_low = <1>;
+	};
+
+	led-a4pho {
+		compatible = "amlogic, led-a4pho";
+		dev_name = "led-a4pho";
+		status = "okay";
+		led_gpio = <&gpio GPIODV_25 GPIO_ACTIVE_LOW>;
 		led_active_low = <1>;
 	};
 

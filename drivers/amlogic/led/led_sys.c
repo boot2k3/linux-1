@@ -15,7 +15,7 @@
  *
  */
 
-#define pr_fmt(fmt)	"sysled: " fmt
+#define pr_fmt(fmt)	"leds: " fmt
 
 #include <linux/init.h>
 #include <linux/kernel.h>
@@ -35,6 +35,7 @@
 #define AML_DEV_NAME		"leds"
 #define AML_LED_NAME		"red"
 
+const char *device_name;
 
 static void aml_sysled_output_setup(struct aml_sysled_dev *ldev,
 				enum led_brightness value)
@@ -70,7 +71,6 @@ static void aml_sysled_brightness_set(struct led_classdev *cdev,
 	schedule_work(&ldev->work);
 }
 
-
 static int aml_sysled_dt_parse(struct platform_device *pdev)
 {
 	struct device_node *node;
@@ -91,12 +91,19 @@ static int aml_sysled_dt_parse(struct platform_device *pdev)
 		return -EINVAL;
 	}
 
+	device_name = NULL;
+	if (of_property_read_string(node, "dev_name", &device_name) < 0) {
+		pr_err("%s:%d,get dev_name fail\n", __func__, __LINE__);
+		return -EINVAL;
+	}
+
 	ldev->d.pin = led_gpio;
 	ldev->d.active_low = flags & OF_GPIO_ACTIVE_LOW;
 	pr_info("led_gpio = %u\n", ldev->d.pin);
+	pr_info("dev_name: %s\n", device_name);
 	pr_info("active_low = %u\n", ldev->d.active_low);
 	gpio_request(ldev->d.pin, AML_DEV_NAME);
-	gpio_direction_output(ldev->d.pin, 1);
+	gpio_direction_output(ldev->d.pin, 0);
 
 	return 0;
 }
@@ -105,7 +112,31 @@ static int aml_sysled_dt_parse(struct platform_device *pdev)
 
 static const struct of_device_id aml_sysled_dt_match[] = {
 	{
-		.compatible = "amlogic, sysled",
+		.compatible = "amlogic, led-booting",
+	},
+	{
+		.compatible = "amlogic, led-booton",
+	},
+	{
+		.compatible = "amlogic, led-wifi",
+	},
+	{
+		.compatible = "amlogic, led-wifiok",
+	},
+	{
+		.compatible = "amlogic, led-usbok",
+	},
+	{
+		.compatible = "amlogic, led-usbwait",
+	},
+	{
+		.compatible = "amlogic, led-6inch",
+	},
+	{
+		.compatible = "amlogic, led-a4doc",
+	},
+	{
+		.compatible = "amlogic, led-a4pho",
 	},
 	{},
 };
@@ -127,7 +158,7 @@ static int aml_sysled_probe(struct platform_device *pdev)
 		return ret;
 
 	/* register led class device */
-	ldev->cdev.name = AML_LED_NAME;
+	ldev->cdev.name = device_name;
 	ldev->cdev.brightness_set = aml_sysled_brightness_set;
 	mutex_init(&ldev->lock);
 	INIT_WORK(&ldev->work, aml_sysled_work);
@@ -137,8 +168,8 @@ static int aml_sysled_probe(struct platform_device *pdev)
 		return ret;
 	}
 
-	/* set led default on */
-	aml_sysled_output_setup(ldev, 1);
+	/* set led default off */
+	aml_sysled_output_setup(ldev, 0);
 
 	pr_info("module probed ok\n");
 	return 0;
