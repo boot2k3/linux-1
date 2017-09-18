@@ -724,7 +724,7 @@
 		compatible = "amlogic, led-usbok";
 		dev_name = "led-usbok";
 		status = "okay";
-		led_gpio = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_LOW>;
+		led_gpio = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_LOW>;
 		led_active_low = <1>;
 	};
 
@@ -732,7 +732,7 @@
 		compatible = "amlogic, led-usbwait";
 		dev_name = "led-usbwait";
 		status = "okay";
-		led_gpio = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_LOW>;
+		led_gpio = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_LOW>;
 		led_active_low = <1>;
 	};
 
