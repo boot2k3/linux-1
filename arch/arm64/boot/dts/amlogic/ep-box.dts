@@ -740,7 +740,7 @@
 		compatible = "amlogic, led-6inch";
 		dev_name = "led-6inch";
 		status = "okay";
-		led_gpio = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_LOW>;
+		led_gpio = <&gpio GPIODV_25 GPIO_ACTIVE_LOW>;
 		led_active_low = <1>;
 	};
 
@@ -756,7 +756,7 @@
 		compatible = "amlogic, led-a4pho";
 		dev_name = "led-a4pho";
 		status = "okay";
-		led_gpio = <&gpio GPIODV_25 GPIO_ACTIVE_LOW>;
+		led_gpio = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_LOW>;
 		led_active_low = <1>;
 	};
 
