@@ -58,8 +58,8 @@ static u32 parse_reason(const char *cmd)
 	        reboot_reason = MESON_UBUNTU_BOOT;
 		else if (strcmp(cmd, "libreelec") == 0)
 	        reboot_reason = MESON_LIBREELEC_BOOT;
-		else if (strcmp(cmd, "android") == 0)
-	        reboot_reason = MESON_ANDROID_BOOT;
+		else if (strcmp(cmd, "reboot_test") == 0)
+	        reboot_reason = MESON_REBOOT_TEST_BOOT;
 	} else {
 		if (kernel_panic) {
 			if (strcmp(kernel_panic, "kernel_panic") == 0)
