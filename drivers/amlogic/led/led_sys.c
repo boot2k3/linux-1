@@ -103,7 +103,7 @@ static int aml_sysled_dt_parse(struct platform_device *pdev)
 	pr_info("dev_name: %s\n", device_name);
 	pr_info("active_low = %u\n", ldev->d.active_low);
 	gpio_request(ldev->d.pin, AML_DEV_NAME);
-	gpio_direction_output(ldev->d.pin, 0);
+	gpio_direction_output(ldev->d.pin, 1);
 
 	return 0;
 }
