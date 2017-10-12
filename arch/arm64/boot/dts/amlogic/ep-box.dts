@@ -472,10 +472,11 @@
 		compatible = "amlogic, gpio_keypad";
 		status = "okay";
 		scan_period = <20>;
-		key_num = <1>;
-		key_name = "power";
-		key_code = <116>;
-		key_pin = <&gpio_ao  GPIOAO_8  GPIO_ACTIVE_HIGH>;/*GPIOAO_2*/
+		key_num = <2>;
+		key_name = "power", "config";
+		key_code = <116 46>;
+		key_pin = <&gpio_ao  GPIOAO_2  GPIO_ACTIVE_HIGH>,/*GPIOAO_2*/
+                  <&gpio_ao  GPIOAO_8  GPIO_ACTIVE_HIGH>;/*GPIOAO_8*/
 		irq_keyup = <6>;
 		irq_keydown = <7>;
 	};
