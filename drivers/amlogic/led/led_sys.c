@@ -168,8 +168,13 @@ static int aml_sysled_probe(struct platform_device *pdev)
 		return ret;
 	}
 
-	/* set led default off */
-	aml_sysled_output_setup(ldev, 0);
+	/* set led-booting on */
+	if (strcmp(ldev->cdev.name, "led-booting") == 0) {
+		aml_sysled_output_setup(ldev, 1);
+	} else {
+		/* set led default off */
+		aml_sysled_output_setup(ldev, 0);
+	}
 
 	pr_info("module probed ok\n");
 	return 0;
