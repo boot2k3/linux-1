@@ -29,3 +29,4 @@
 #define MESON_REBOOT_TEST_BOOT				10
 #define	MESON_CRASH_REBOOT					11
 #define	MESON_KERNEL_PANIC					12
+#define MESON_REBOOT_APP_REBOOT             15
