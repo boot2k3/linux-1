@@ -1094,7 +1094,7 @@
 
 	unifykey{
 		compatible = "amlogic, unifykey";
-		status = "disabled";
+		status = "okay";
 
 		unifykey-num = <14>;
 		unifykey-index-0 = <&keysn_0>;
