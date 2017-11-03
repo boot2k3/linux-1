@@ -9491,7 +9491,15 @@ dhd_register_if(dhd_pub_t *dhdp, int ifidx, bool need_rtnl_lock)
 
 	dhd->pub.rxsz = DBUS_RX_BUFFER_SIZE_DHD(net);
 
+#ifdef GET_CUSTOM_MAC_ENABLE
+	err = wifi_platform_get_mac_addr(dhd->adapter, dhd->pub.mac.octet);
+	if (!err)
+		memcpy(net->dev_addr, dhd->pub.mac.octet, ETHER_ADDR_LEN);
+	else
+		memcpy(net->dev_addr, temp_addr, ETHER_ADDR_LEN);
+#else
 	memcpy(net->dev_addr, temp_addr, ETHER_ADDR_LEN);
+#endif
 
 	if (ifidx == 0)
 		printf("%s\n", dhd_version);
