@@ -168,9 +168,8 @@ static int aml_sysled_probe(struct platform_device *pdev)
 		return ret;
 	}
 
-	/* set led-booting(orange) on */
-	/* new dual color led(red/green), set to orange(red+reen) */
-	if ((strcmp(ldev->cdev.name, "led-booting") == 0) || (strcmp(ldev->cdev.name, "led-booton") == 0)) {
+	/* set led-booting(red) on */
+	if (strcmp(ldev->cdev.name, "led-booting") == 0) {
 		aml_sysled_output_setup(ldev, 1);
 	} else {
 		/* set led default off */
