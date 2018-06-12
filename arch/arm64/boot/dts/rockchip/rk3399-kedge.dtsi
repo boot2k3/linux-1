@@ -211,7 +211,16 @@
 		 * - SDIO_RESET_L_WL_REG_ON
 		 * - PDN (power down when low)
 		 */
-		reset-gpios = <&gpio0 10 GPIO_ACTIVE_LOW>; /* GPIO0_B2 */
+		reset-gpios = <&gpio2 28 GPIO_ACTIVE_LOW>; /* GPIO2_D4 */
+	};
+
+	wireless-wlan {
+		compatible = "wlan-platdata";
+		rockchip,grf = <&grf>;
+		wifi_chip_type = "ap6354";
+		sdio_vref = <1800>;
+		WIFI,host_wake_irq = <&gpio0 3 GPIO_ACTIVE_HIGH>; /* GPIO0_a3 */
+		status = "okay";
 	};
 
 	vcc3v3_sys: vcc3v3-sys {
@@ -1010,7 +1019,7 @@
 	sdio-pwrseq {
 		wifi_enable_h: wifi-enable-h {
 			rockchip,pins =
-				<0 10 RK_FUNC_GPIO &pcfg_pull_none>;
+				<2 28 RK_FUNC_GPIO &pcfg_pull_none>; /* GPIO2_D4 */
 		};
 	};
 
