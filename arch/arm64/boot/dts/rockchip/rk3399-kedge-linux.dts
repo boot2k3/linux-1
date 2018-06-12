@@ -50,3 +50,7 @@
 	compatible = "khadas,edge", "rockchip,rk3399";	
 };
 
+&gmac {
+	status = "disabled";
+};
+
