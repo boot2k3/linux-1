@@ -118,6 +118,8 @@ static void meson_crtc_atomic_enable(struct drm_crtc *crtc,
 		meson_crtc_enable(crtc);
 
 	priv->viu.osd1_enabled = true;
+
+	drm_crtc_vblank_on(crtc);
 }
 
 static void meson_crtc_atomic_disable(struct drm_crtc *crtc,
